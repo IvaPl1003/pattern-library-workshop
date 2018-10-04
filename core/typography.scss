@@ -35,8 +35,8 @@ $base-scale-ratio: 1.2;
 // ---------------------------------------------------------------
 // key: (font-size)
 $font-sizes: ( 
-    xxs: ($base-font-size/($base-scale-ratio*3)),
-    xs:  ($base-font-size/($base-scale-ratio*2)), 
+    xxs: ($base-font-size/($base-scale-ratio*1.5)),
+    xs:  ($base-font-size/($base-scale-ratio*1.2)), 
     s:   ($base-font-size/$base-scale-ratio), 
     m:   ($base-font-size),                          // Base font size
     l:   ($base-font-size*$base-scale-ratio*2), 
@@ -87,39 +87,7 @@ $font-sizes: (
 /* ----------------------------------------------------------------
    Headings
 ---------------------------------------------------------------- */
-h1, h2, h3, h4 {
-    font-family: $secondary-font;
-    margin-bottom: spacing(l);
-}
-
-h5, h6 {
-    font-family: primary-font;
-    margin-bottom: spacing(s);
-}
-
-h1 {
-    font-size: font-scale(xxl);
-}
-
-h2 {
-    font-size: font-scale(xl);
-}
-
-h3 {
-    font-size: font-scale(l);
-}
-
-h4 {
-    font-size: font-scale(m);
-}
-
-h5 {
-    font-size: font-scale(m);
-}
-
-h6 {
-    font-size: font-scale(s);
-}
+// moved to the components directory
 
 /* ----------------------------------------------------------------
    Links

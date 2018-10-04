@@ -1,0 +1,22 @@
+title: Buttons
+status: wip
+context:
+    modifier: primary
+    text: Button
+variants:
+    - 
+        name: secondary
+        context:
+            modifier: secondary
+            text: Secondary Button
+    - 
+        name: tertiary
+        context:
+            modifier: tertiary
+            text: Tertiary Button
+    - 
+        name: disabled
+        context:
+            modifier: disabled
+            text: Disabled Button
+notes: Notes can go here, or you can add a README.md file in the components directory

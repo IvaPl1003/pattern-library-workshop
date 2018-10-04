@@ -1,0 +1,5 @@
+title: Headings
+status: wip
+context:
+    text: This is an example component!
+notes: Notes can go here, or you can add a README.md file in the components directory
