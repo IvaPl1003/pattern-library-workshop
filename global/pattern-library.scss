@@ -1,0 +1,12 @@
+// Import scss files from all of core
+// These are typically setup files, 
+@import "../core/**/*.scss";
+
+// Import Normalize
+@import "normalize.scss";
+
+// Import root elements (HTML/Body)
+@import "root.scss";
+
+// Import scss files from all the components
+@import "../components/**/*.scss";
