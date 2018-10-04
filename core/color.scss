@@ -1,7 +1,89 @@
 /* ================================================================
    Color
 ================================================================ */
+// Guidelines
+// 1. Choose color names that are easy to remember
+//    You can be declarative ($blue, $red) or semantic ($primary,
+//    secondary). Use what works best for you and your team.
+// 2. Choose names are also easy to update, add, remove, or change 
+//    later on without having to update your entire codebase.
+// 3. Only use the colors you really need. Prune colors that
+//    have very minor variances with one another and consolidate.
 
-/* ----------------------------------------------------------------
-   Sub-section
----------------------------------------------------------------- */
+
+// Bermon preference: Use declarative naming in your color variables
+// and then break them down semantically using a Sass map. It's
+// easier to remember what the hex code represents. 
+$pink: #ff0000;
+$purple: #f800e0;
+$yellow: #fdbf00;
+$gray: #5c6b5d;
+
+// Alert colors
+$alert-blue: #007fcf;
+$alert-red: $pink;
+$alert-yellow: $yellow;
+$alert-green: #00e56d;
+
+// ---------------------------------------------------------------
+// Color Map
+//
+// Sass map with branded colors. These are the values that should
+// be used in any Sass files. Call these in your Sass with (
+// defaults to the color in 'base'): 
+// 
+//  Usage:
+//     background-color: color(primary, dark);
+// ---------------------------------------------------------------
+$colors: (
+  primary: (
+    base: $pink,
+    light: lighten($pink, 10%),
+    x-light: lighten($pink, 15%),
+    xx-light: lighten($pink, 25%),
+    dark: darken($pink, 10%),
+    x-dark: darken($pink, 15%),
+    xx-dark: darken($pink, 25%)
+  ),
+  secondary: (
+    base: $purple,
+    light: lighten($purple, 10%),
+    x-light: lighten($purple, 15%),
+    xx-light: lighten($purple, 25%),
+    dark: darken($purple, 10%),
+    x-dark: darken($purple, 15%),
+    xx-dark: darken($purple, 25%)
+  ),
+  tertiary: (
+    base: $yellow,
+    light: lighten($yellow, 10%),
+    x-light: lighten($yellow, 15%),
+    xx-light: lighten($yellow, 25%),
+    dark: darken($yellow, 10%),
+    x-dark: darken($yellow, 15%),
+    xx-dark: darken($yellow, 25%)
+  ),
+  neutral: (
+    base: $gray,
+    light: lighten($gray, 10%),
+    x-light: lighten($gray, 15%),
+    xx-light: lighten($gray, 25%),
+    dark: darken($gray, 10%),
+    x-dark: darken($gray, 15%),
+    xx-dark: darken($gray, 25%)
+  ),
+  alert: (
+    info: $alert-blue,
+    success: $alert-green,
+    warning: $alert-yellow,
+    danger: $alert-red
+  )
+);
+
+// ----------------------------------------------------------------
+// Required function to return the brand colors from the color map
+// Uses the base color for each color grouping by default
+// ----------------------------------------------------------------
+@function color($color, $tone: 'base') {
+    @return map-get(map-get($colors, $color), $tone);
+}
