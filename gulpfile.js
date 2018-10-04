@@ -1,4 +1,4 @@
-// Courtesy of Rachel Andrews - https://github.com/rachelandrew/smashing-fractal/
+// Setup courtesy of Rachel Andrews - https://github.com/rachelandrew/smashing-fractal/
 
 'use strict';
 
@@ -12,7 +12,7 @@ const notify       = require('gulp-notify');
 const path         = require('path');
 
 gulp.task('sass',function() {
-    return gulp.src('assets/scss/**/*.scss')
+    return gulp.src('global/**/*.scss')
     .pipe(customPlumber('Error running Sass'))
     .pipe(sassGlob())
     .pipe(sass())
