@@ -13,5 +13,5 @@ You'll need to dust off your command line skills for a brief moment.
 Clone the project repository: `$ git clone git@github.com:bpainter/pattern-library-workshop.git`
 2. Go into the project directory: `$ cd pattern-library-workshop/pattern-library`
 3. Install the dependencies: `npm install`
-4. Start the development server: `fractal start --sync`
+4. Start the development server: `gulp`
 5. Open the pattern library in the browser: `http://localhost:3000/`
