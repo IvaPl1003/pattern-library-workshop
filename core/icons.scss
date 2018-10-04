@@ -2,6 +2,76 @@
    Icons
 ================================================================ */
 
-/* ----------------------------------------------------------------
-   Sub-section
----------------------------------------------------------------- */
+// ----------------------------------------------------------------
+// Icon Scale Map
+// Map to handle the icon sizes relative to the base
+// Usage:
+//      icon-scale(m)
+// ---------------------------------------------------------------
+$base-icon-size: 1em;
+
+$icon-sizes: ( 
+    xxs:  ($base-icon-size/.25),
+    xs:  ($base-icon-size/.5), 
+    s:   ($base-icon-size/.75), 
+    m:   ($base-icon-size),        // Base icon size
+    l:   ($base-icon-size*1.25), 
+    xl:  ($base-icon-size*1.75), 
+    xxl:  ($base-icon-size*2.25)
+);
+
+// ----------------------------------------------------------------
+// Icon Scale Mixin
+// Handles adjusting the width and height of the icon
+// Usage:
+//      .icon-lg {
+//          @include icon-scale(l);
+//      }
+// ---------------------------------------------------------------
+@mixin icon-scale($scale) {
+    height: icon-scale($scale);
+    width: icon-scale($scale);
+}
+// ---------------------------------------------------------------
+// Icon Scale Function
+// Iterates through the map
+// Usage:
+//      icon-scale(m);
+// ---------------------------------------------------------------
+@function icon-scale($scale) {
+    @return map-get($icon-sizes, $scale);
+}
+
+// ---------------------------------------------------------------
+// Default styling for all icons
+// ---------------------------------------------------------------
+[class^="icon-"] {
+    display: inline-block;
+    // color: color(neutral, x-dark);
+    fill: currentColor; // inherits the color from the parent
+    height: 1em;
+    width: 1em;
+}
+
+.icon-xxs {
+    @include icon-scale(xxs);
+}
+.icon-xs {
+    @include icon-scale(xs);
+}
+.icon-s {
+    @include icon-scale(s);
+}
+.icon-m {
+    @include icon-scale(m);
+}
+.icon-l {
+    @include icon-scale(l);
+}
+.icon-xl {
+    @include icon-scale(xl);
+}
+.icon-xxl {
+    @include icon-scale(xxl);
+}
+

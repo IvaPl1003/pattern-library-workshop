@@ -1,0 +1,38 @@
+// ---------------------------------------------------------------
+// Breakpoints Map
+// ---------------------------------------------------------------
+$breakpoints: ( 
+    xxs: 500px, 
+    xs: 600px, 
+    s: 700px, 
+    m: 850px, 
+    l: 1000px, 
+    xl: 1200px, 
+    xxl: 1600px
+);
+
+// ---------------------------------------------------------------
+// Function to handle consuming the breakpoints map
+// ---------------------------------------------------------------
+@function breakpoint($breakpoint) {
+    @return map-get($breakpoints, $breakpoint);
+}
+
+// ---------------------------------------------------------------
+// General Breakpoint Mixin
+// Sets basic breakpoint values as a mixin based on the
+// Sass map of breakpoint values in the theme.scss
+// @media rule defaults to 'min-width'
+//
+// Usage:
+//    @include breakpoint(l, min-width) {
+//        ...
+//    }
+// ---------------------------------------------------------------
+@mixin breakpoint($breakpoint, $rule: min-width) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media only screen and (#{$rule}: breakpoint($breakpoint)) {
+            @content;
+        }    
+    }    
+}

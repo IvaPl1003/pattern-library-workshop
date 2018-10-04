@@ -1,7 +1,18 @@
 /* ================================================================
-   Primary Section
+   Root
 ================================================================ */
-
-/* ----------------------------------------------------------------
-   Sub-section
----------------------------------------------------------------- */
+html {
+    font-size: 16px;
+    // You can adjust the body font-size here via
+    // media queries to increase both the font and 
+    // margin/padding scaling across all components
+    // @include breakpoint(m, min-width) { font-size: 14px }
+    // @include breakpoint(xl, min-width) { font-size: 18px }
+}
+body {
+	background-color: color(neutral, xx-light);
+    color: color(neutral, xx-dark);
+    font-family: $primary-font;
+	font-size: $base-font-size;
+	line-height: $body-line-height;
+}

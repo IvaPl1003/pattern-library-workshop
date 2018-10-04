@@ -2,6 +2,96 @@
    Spacing
 ================================================================ */
 
-/* ----------------------------------------------------------------
-   Sub-section
----------------------------------------------------------------- */
+// ----------------------------------------------------------------
+// Set the base spacing size
+// ----------------------------------------------------------------
+$base-spacing-size: 1em;
+$base-spacing-size-fixed: 1rem;
+
+// ---------------------------------------------------------------
+// Spacing Scale Map - modular scale
+// ---------------------------------------------------------------
+$spacing-scale: (
+  xxs:  $base-spacing-size * .25,
+  xs:   $base-spacing-size * .5,
+  s:    $base-spacing-size * .75,
+  m:    $base-spacing-size,
+  l:    $base-spacing-size * 1.25,
+  xl:   $base-spacing-size * 2,
+  xxl:  $base-spacing-size * 3.25
+);
+
+// $spacing-scale-fixed: (
+//   xxs:  $base-spacing-size-fixed * .25,
+//   xs:   $base-spacing-size-fixed * .5,
+//   s:    $base-spacing-size-fixed * .75,
+//   m:    $base-spacing-size-fixed,
+//   l:    $base-spacing-size-fixed * 1.25,
+//   xl:   $base-spacing-size-fixed * 2,
+//   xxl:  $base-spacing-size-fixed * 3.25
+// );
+
+// ---------------------------------------------------------------
+// Spacing Scale Function
+// Iterates through the spacing scale map
+// 
+// Usage:
+//      spacing(xl)
+//      spacing(-xl)
+// ---------------------------------------------------------------
+@function spacing($scale) {
+  $is-negative: str-slice($scale, 1, 1);
+  
+  @if $is-negative == '-' {
+    // Get the length of the scale
+    // that includes the '-' value
+    $scale-length: str-length($scale);
+
+    // Slice the scale to remove the '-' value
+    $scale-slice: str-slice($scale, 2, $scale-length);
+    
+    // Get the value from the map
+    $scale-value: map-get($spacing-scale, $scale-slice);
+    
+    // Return the negative value from the map
+    @return (-$scale-value);
+  } @else {
+    // Return the positive value from the map
+    @return map-get($spacing-scale, $scale);
+  }
+}
+
+// ---------------------------------------------------------------
+// Helper spacing mixins
+// Handles 5 primary spacing options
+// 	1. equal padding/margin on an element
+// 	2. offset padding/margin on an element (i.e. left/right or top/bottom
+// 	   have different padding)
+//  3. stacking for setting bottom margins for consistent 
+//     vertical rhythm
+//  4. inline for setting right margins
+//  5. unique spacing for when padding/margin is unique on all sides 
+//---------------------------------------------------------------
+// Usage: (top, right, left, bottom padding/margin)
+// @include equal-spacing(margin, s);
+@mixin equal-spacing($type, $value) {
+  #{$type} : spacing($value);
+}
+
+// Usage: (top & botton padding/margin, left & right padding/margin)
+// @include offset-spacing(margin, zero, auto);
+@mixin offset-spacing($type, $top-bottom, $left-right) {
+  #{$type} : spacing($top-bottom) spacing($left-right);
+}
+
+// Usage: (bottom margin)
+// @include stack(xl);
+@mixin stack($bottom-margin) {
+  margin-bottom: spacing($bottom-margin);
+}
+
+// Usage: (right-margin)
+// @include inline(xs);
+@mixin inline($right-margin) {
+  margin-right: spacing($right-margin);
+}

@@ -1,7 +1,38 @@
 /* ================================================================
    Grid
+   Outputs no CSS
 ================================================================ */
+// Grid is complex and depending on your coding style, the Bootstrap
+// is mostly obsolete when using Flexbox and Grid. To learn more
+// building grid systems for modern browsers check out
+// http://jensimmons.com/post/feb-27-2017/learn-css-grid
 
-/* ----------------------------------------------------------------
-   Sub-section
----------------------------------------------------------------- */
+// ---------------------------------------------------------------
+// Generated Grid
+// If you aren't familiar with Grid and Flexbox some utility
+// classes have been generated to help you build components
+// with a Bootstrap-like grid system
+// ---------------------------------------------------------------
+$grid-gutter: 15px;
+
+// General 12 column grid function
+// Usage:
+//      .element {
+//          width: grid (3);
+//      }
+@function grid($columns, $grid-columns: 12, $has-gutter:false) {
+    @if $has-gutter {
+      @return calc-percentage($columns, $grid-columns) - #{$grid-gutter};  
+    }
+    @else {
+      @return calc-percentage($columns, $grid-columns);
+    }
+}
+
+// ---------------------------------------------------------------
+// Helper function to calculate the column percentages
+// in the general grid function
+// ---------------------------------------------------------------
+@function calc-percentage($columns, $grid-columns: 12){
+  @return percentage(($columns / $grid-columns) * 1);
+}
